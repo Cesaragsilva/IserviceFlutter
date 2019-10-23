@@ -1,6 +1,7 @@
-import 'dart:convert';
+import 'dart:convert' show json;
 
 import 'package:flutter/material.dart';
+import 'CardViewCategoria.dart';
 import 'api.dart';
 import 'categoria.dart';
 import 'listaSubCategorias.dart';
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, home: BuildListViewApi());
+        debugShowCheckedModeBanner: false, 
+        home: CardCategoria()//BuildListViewApi()
+        );
   }
 }
 
@@ -56,9 +59,11 @@ class _BuildListViewApiState extends State<BuildListViewApi> {
             style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
           ),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => ListaSubCategoria(categorias[index])
-            ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ListaSubCategoria(categorias[index])));
           },
         );
       },
