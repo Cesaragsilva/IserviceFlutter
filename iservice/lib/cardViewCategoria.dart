@@ -31,8 +31,8 @@ class _CardCategoriaState extends State<CardCategoria> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Color(0xFFf45d27),
         title: Text("Lista de Categoria"),
-        backgroundColor: Colors.deepOrange,
       ),
       body: Container(
           padding: EdgeInsets.all(20.0),

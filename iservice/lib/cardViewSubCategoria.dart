@@ -38,8 +38,8 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFFf45d27),
           title: Text("Lista de Subcategorias"),
-          backgroundColor: Colors.deepOrange,
         ),
         body: Container(
           padding: EdgeInsets.all(20.0),
