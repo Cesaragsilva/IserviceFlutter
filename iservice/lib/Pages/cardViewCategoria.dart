@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
-import 'api.dart';
+import 'package:todo/Entidades/categoria.dart';
+import 'package:todo/services/api.dart';
 import 'cardViewSubCategoria.dart';
-import 'categoria.dart';
 
 class CardCategoria extends StatefulWidget {
   @override

@@ -1,10 +1,11 @@
 import 'dart:convert' show json;
 
 import 'package:flutter/material.dart';
-import 'api.dart';
-import 'categoria.dart';
+import 'package:todo/services/api.dart';
+import 'Entidades/categoria.dart';
+import 'Pages/login.dart';
+import 'Pages/splash.dart';
 import 'listaSubCategorias.dart';
-import 'login.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,9 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, 
-        home: Login()//BuildListViewApi()
-        );
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: Color(0xFFf45d27)),
+      home: new SplashPage(),
+      routes: <String, WidgetBuilder>{
+        '/Login': (BuildContext context) => new Login()
+      },
+    );
   }
 }
 

@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:todo/subCategoria.dart';
-
-import 'api.dart';
-import 'categoria.dart';
+import 'package:todo/Entidades/categoria.dart';
+import 'package:todo/Entidades/subCategoria.dart';
+import 'package:todo/services/api.dart';
 
 class CardViewSubCategoria extends StatefulWidget {
   final Categoria categoria;
@@ -44,8 +43,9 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
         body: Container(
           padding: EdgeInsets.all(20.0),
           child: GridView.builder(
-            itemCount: subCategorias.length,  gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),             
+            itemCount: subCategorias.length,
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             itemBuilder: (context, index) {
               return listaSubCategoria(subCategorias[index]);
             },
@@ -60,13 +60,10 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
         splashColor: Colors.deepOrange,
         child: Center(
           child: Column(
-            children: <Widget>[
-              Icon(Icons.home), 
-              Text(subCategoria.nome)
-            ],
-          ),          
-        ),        
-      ),      
+            children: <Widget>[Icon(Icons.home), Text(subCategoria.nome)],
+          ),
+        ),
+      ),
     );
   }
 }

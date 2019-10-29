@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:todo/subCategoria.dart';
+import 'package:todo/services/api.dart';
 
-import 'api.dart';
-import 'categoria.dart';
+import 'Entidades/categoria.dart';
+import 'Entidades/subCategoria.dart';
 
 class ListaSubCategoria extends StatefulWidget {
   final Categoria categoria;
