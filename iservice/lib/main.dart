@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Color(0xFFf45d27)),
       home: new SplashPage(),
-      routes: <String, WidgetBuilder>{
-        '/Login': (BuildContext context) => new Login()
-      },
+      routes: {'/login': (context) => new Login()},
     );
   }
 }

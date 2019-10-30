@@ -4,11 +4,12 @@ class CampoInicial extends StatefulWidget {
   String texto;
   IconData icone;
   TextEditingController controller;
-  double margin = 0;
+  double margin;
+  double largura;
   bool textoSecreto;
 
   CampoInicial(this.texto, this.icone, this.controller,
-      {this.margin = 0, this.textoSecreto = false});
+      {this.margin = 0, this.textoSecreto = false, this.largura = 300});
 
   @override
   _CampoInicialState createState() => _CampoInicialState();
@@ -18,7 +19,7 @@ class _CampoInicialState extends State<CampoInicial> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 300,
+        width: widget.largura,
         height: 45,
         margin: EdgeInsets.only(top: widget.margin),
         padding: EdgeInsets.only(top: 5, left: 10),

@@ -40,16 +40,20 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
           backgroundColor: Color(0xFFf45d27),
           title: Text("Lista de Subcategorias"),
         ),
-        body: Container(
-          padding: EdgeInsets.all(20.0),
-          child: GridView.builder(
-            itemCount: subCategorias.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              return listaSubCategoria(subCategorias[index]);
-            },
-          ),
+        body: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: GridView.builder(
+                itemCount: subCategorias.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return listaSubCategoria(subCategorias[index]);
+                },
+              ),
+            ),
+          ],
         ));
   }
 

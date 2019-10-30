@@ -10,7 +10,7 @@ class BotaoInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: marginTop, bottom: 50),
+        margin: EdgeInsets.only(top: marginTop, bottom: 20),
         child: ButtonTheme(
           minWidth: 300,
           splashColor: Color(0xFFf45d27),

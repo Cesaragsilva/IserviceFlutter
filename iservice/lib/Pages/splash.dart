@@ -10,7 +10,7 @@ class SplashPage extends StatefulWidget {
 
 class SplashPageState extends State<SplashPage> {
   void navigationToNextPage() {
-    Navigator.pushReplacementNamed(context, '/Login');
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   startSplashScreenTimer() async {
@@ -26,8 +26,7 @@ class SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
-
+    // SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
         body: Stack(
       fit: StackFit.expand,
