@@ -17,9 +17,7 @@ class InicioTela extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Spacer(),
-          Align(alignment: Alignment.center, child: Logo(50, 40)
-              // Text(texto,style: TextStyle(fontSize: tamanhoTexto, color: Colors.white)),
-              ),
+          Align(alignment: Alignment.center, child: Logo(50, 40)),
           Spacer(),
           Align(
               alignment: Alignment.bottomRight,

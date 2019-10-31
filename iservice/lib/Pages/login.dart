@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo/Pages/recuperar_senha.dart';
 import 'package:todo/Widget/botao_inicial.dart';
-import 'package:todo/Widget/campo_inicial.dart';
 import 'package:todo/Widget/inicio_tela.dart';
 import 'package:todo/pages/cadastro_usuario.dart';
 import 'package:todo/services/api.dart';
-import 'package:todo/utilitario/styles.dart';
+import 'package:todo/widget/campo_inicial.dart';
 
 import 'cardViewCategoria.dart';
 
@@ -27,7 +26,10 @@ class _LoginState extends State<Login> {
           child: Column(
             children: <Widget>[
               InicioTela("IS", 60, textoFilho: "Login"),
-              corpoTela(context)
+              Padding(
+                padding: const EdgeInsets.only(top: 0),
+                child: corpoTela(context),
+              )
             ],
           ),
         ),
@@ -48,7 +50,7 @@ class _LoginState extends State<Login> {
           children: <Widget>[
             CampoInicial('Email', Icons.email, _ctrlLogin),
             CampoInicial('Senha', Icons.vpn_key, _ctrlSenha,
-                margin: 32, textoSecreto: true),
+                margin: 40, textoSecreto: true),
             recuperarSenha(),
             buttonLogin,
             acessarCom(),
@@ -81,15 +83,18 @@ class _LoginState extends State<Login> {
   }
 
   Widget acessarCom() {
-    return Column(
-      children: <Widget>[
-        Text(
-          '- Acessa com -',
-          style: TextStyle(
-            color: Colors.grey,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Column(
+        children: <Widget>[
+          Text(
+            '- Acessar com -',
+            style: TextStyle(
+              color: Colors.grey,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -169,7 +174,7 @@ class _LoginState extends State<Login> {
             MaterialPageRoute(builder: (context) => CadastroUsuario()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 60),
+        padding: const EdgeInsets.only(top: 50),
         child: Align(
           child: RichText(
             text: TextSpan(
@@ -178,15 +183,15 @@ class _LoginState extends State<Login> {
                   text: 'Não possui uma conta? ',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 18.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 TextSpan(
                   text: 'Registre-se',
                   style: TextStyle(
-                    color: Colors.deepOrange,
-                    fontSize: 18.0,
+                    color: Color(0xFFf5851f),
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

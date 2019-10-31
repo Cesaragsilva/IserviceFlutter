@@ -12,8 +12,8 @@ class BotaoInicial extends StatelessWidget {
     return Container(
         margin: EdgeInsets.only(top: marginTop, bottom: 20),
         child: ButtonTheme(
-          minWidth: 300,
-          splashColor: Color(0xFFf45d27),
+          minWidth: 200,
+          splashColor: Color(0xFFf5851f),
           padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 15.0),
           child: RaisedButton(
             color: Colors.white,
@@ -21,7 +21,7 @@ class BotaoInicial extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Montserrat',
-                    fontSize: 20.0,
+                    fontSize: 15.0,
                     color: Color(0xFFf45d27))),
             onPressed: comportamento,
             shape: RoundedRectangleBorder(

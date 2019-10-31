@@ -33,7 +33,7 @@ class _CampoInicialState extends State<CampoInicial> {
           child: TextField(
             obscureText: widget.textoSecreto,
             controller: widget.controller,
-            style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0),
+            style: TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
             decoration: InputDecoration(
                 hintText: widget.texto,
                 icon: Padding(
