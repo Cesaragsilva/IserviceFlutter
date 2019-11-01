@@ -32,6 +32,9 @@ class InicioTela extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 3.5,
       decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(color: Colors.black87, blurRadius: 8),
+          ],
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

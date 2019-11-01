@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:todo/Entidades/categoria.dart';
 import 'package:todo/Widget/campo_inicial.dart';
+import 'package:todo/entidades/usuario.dart';
 import 'package:todo/services/api.dart';
 import 'cardViewSubCategoria.dart';
 
@@ -18,8 +19,17 @@ class _CardCategoriaState extends State<CardCategoria> {
   _getCategorias() {
     API.getCategoria().then((response) {
       setState(() {
-        Iterable lista = json.decode(response.body);
-        categorias = lista.map((model) => Categoria.fromJson(model)).toList();
+        if (Usuario.usuario == "teste") {
+          categorias.add(Categoria(nome: "Técnico"));
+          categorias.add(Categoria(nome: "Eventos"));
+          categorias.add(Categoria(nome: "Educação"));
+          categorias.add(Categoria(nome: "Saúde"));
+          categorias.add(Categoria(nome: "Beleza"));
+          categorias.add(Categoria(nome: "Reformas"));
+        } else {
+          Iterable lista = json.decode(response.body);
+          categorias = lista.map((model) => Categoria.fromJson(model)).toList();
+        }
         categoriasLitradas = categorias;
       });
     });
@@ -44,6 +54,9 @@ class _CardCategoriaState extends State<CardCategoria> {
             height: MediaQuery.of(context).size.width / 2.5,
             decoration: BoxDecoration(
               color: Color(0xFFf45d27),
+              boxShadow: [
+                BoxShadow(color: Colors.black26, blurRadius: 8),
+              ],
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(100),
                   bottomRight: Radius.circular(100)),

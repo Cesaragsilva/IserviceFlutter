@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/Pages/recuperar_senha.dart';
 import 'package:todo/Widget/botao_inicial.dart';
 import 'package:todo/Widget/inicio_tela.dart';
+import 'package:todo/entidades/usuario.dart';
 import 'package:todo/pages/cadastro_usuario.dart';
 import 'package:todo/services/api.dart';
 import 'package:todo/widget/campo_inicial.dart';
@@ -74,11 +75,12 @@ class _LoginState extends State<Login> {
 
     var usuario = await API.postLogin(login, senha);
 
+    Usuario.usuario = login;
+
     if (usuario != null && usuario.erros == null)
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => CardCategoria()));
 
-    print("Chegou!!!");
     AlertDialog(title: Text("login"), content: Text("Login invalido"));
   }
 
