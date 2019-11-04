@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:todo/Entidades/categoria.dart';
-import 'package:todo/Widget/campo_inicial.dart';
 import 'package:todo/entidades/usuario.dart';
 import 'package:todo/services/api.dart';
+import 'package:todo/widget/campo_pesquisa.dart';
+import 'package:todo/widget/card_categoria_subcategoria.dart';
+import 'package:todo/widget/inicio_tela_categoria_subcategoria.dart';
+import 'package:todo/widget/menu.dart';
 import 'cardViewSubCategoria.dart';
 
 class CardCategoria extends StatefulWidget {
@@ -17,19 +20,21 @@ class _CardCategoriaState extends State<CardCategoria> {
   var categoriasLitradas = new List<Categoria>();
 
   _getCategorias() {
+    if (Usuario.usuario == "teste") {
+      categorias.add(Categoria(nome: "Técnico", id: "1"));
+      categorias.add(Categoria(nome: "Eventos", id: "2"));
+      categorias.add(Categoria(nome: "Educação", id: "3"));
+      categorias.add(Categoria(nome: "Saúde", id: "4"));
+      categorias.add(Categoria(nome: "Beleza", id: "5"));
+      categorias.add(Categoria(nome: "Reformas", id: "6"));
+      categoriasLitradas = categorias;
+      return;
+    }
+
     API.getCategoria().then((response) {
       setState(() {
-        if (Usuario.usuario == "teste") {
-          categorias.add(Categoria(nome: "Técnico"));
-          categorias.add(Categoria(nome: "Eventos"));
-          categorias.add(Categoria(nome: "Educação"));
-          categorias.add(Categoria(nome: "Saúde"));
-          categorias.add(Categoria(nome: "Beleza"));
-          categorias.add(Categoria(nome: "Reformas"));
-        } else {
-          Iterable lista = json.decode(response.body);
-          categorias = lista.map((model) => Categoria.fromJson(model)).toList();
-        }
+        Iterable lista = json.decode(response.body);
+        categorias = lista.map((model) => Categoria.fromJson(model)).toList();
         categoriasLitradas = categorias;
       });
     });
@@ -41,62 +46,14 @@ class _CardCategoriaState extends State<CardCategoria> {
 
   @override
   Widget build(BuildContext context) {
+    var _scaffoldKey = new GlobalKey<ScaffoldState>();
+
     return Scaffold(
-      // appBar: new AppBar(
-      //   backgroundColor: Color(0xFFf45d27),
-      //   title: Text("Lista de Categoria"),
-      // ),
+      key: _scaffoldKey,
+      drawer: Menu(),
       body: Column(
         children: <Widget>[
-          Container(
-            // margin: EdgeInsets.all(8),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width / 2.5,
-            decoration: BoxDecoration(
-              color: Color(0xFFf45d27),
-              boxShadow: [
-                BoxShadow(color: Colors.black26, blurRadius: 8),
-              ],
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(100),
-                  bottomRight: Radius.circular(100)),
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xFFf45d27), Color(0xFFf5851f)]),
-            ),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Text(
-                    'Categorias',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontFamily: 'Roboto'),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: campoPesquisar((string) {
-                        setState(() {
-                          categoriasLitradas = categorias
-                              .where((p) => p.nome
-                                  .toUpperCase()
-                                  .contains(string.toString().toUpperCase()))
-                              .toList();
-                        });
-                      }),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          inicioTelaCategoria(_scaffoldKey),
           Expanded(
             child: Container(
                 padding: EdgeInsets.only(right: 20.0, left: 20.0),
@@ -113,49 +70,28 @@ class _CardCategoriaState extends State<CardCategoria> {
     );
   }
 
-  buildCard(Categoria categoria) {
-    return Card(
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CardViewSubCategoria(categoria)));
-        },
-        splashColor: Colors.deepOrange,
-        child: Center(
-          child: Column(
-            children: <Widget>[Icon(Icons.home), Text(categoria.nome)],
-          ),
-        ),
-      ),
+  inicioTelaCategoria(GlobalKey<ScaffoldState> _scaffoldKey) {
+    return InicioTelaCategoriaSubCategoria(
+      "Categorias",
+      (string) {
+        setState(() {
+          categoriasLitradas = categorias
+              .where((p) => p.nome
+                  .toUpperCase()
+                  .contains(string.toString().toUpperCase()))
+              .toList();
+        });
+      },
+      scaffold: _scaffoldKey,
     );
   }
 
-  Widget campoPesquisar(Function pesquisar) {
-    return Container(
-        width: MediaQuery.of(context).size.height / 2.2,
-        height: 45,
-        padding: EdgeInsets.only(top: 5, left: 10),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-            boxShadow: [
-              BoxShadow(color: Colors.black26, blurRadius: 8),
-            ]),
-        child: Theme(
-          child: TextField(
-            style: TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
-            decoration: InputDecoration(
-                hintText: 'O que você precisa?',
-                icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: Icon(Icons.search),
-                ),
-                border: InputBorder.none),
-            onChanged: pesquisar,
-          ),
-          data: Theme.of(context).copyWith(primaryColor: Color(0xFFf5851f)),
-        ));
+  buildCard(Categoria categoria) {
+    return CarCategoriaSubCategoria(categoria.nome, () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CardViewSubCategoria(categoria)));
+    });
   }
 }

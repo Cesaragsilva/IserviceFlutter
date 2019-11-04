@@ -1,31 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CampoInicial extends StatefulWidget {
-  String texto;
-  IconData icone;
-  TextEditingController controller;
-  double margin;
-  double largura;
-  bool textoSecreto;
-  TextInputType tipoTeclado;
+class CampoPesquisa extends StatefulWidget {
+  Function pesquisar;
 
-  CampoInicial(this.texto, this.icone, this.controller,
-      {this.margin = 0,
-      this.tipoTeclado = TextInputType.text,
-      this.textoSecreto = false,
-      this.largura = 300});
+  CampoPesquisa(this.pesquisar);
 
   @override
-  _CampoInicialState createState() => _CampoInicialState();
+  _CampoPesquisaState createState() => _CampoPesquisaState();
 }
 
-class _CampoInicialState extends State<CampoInicial> {
+class _CampoPesquisaState extends State<CampoPesquisa> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: widget.largura,
+        width: MediaQuery.of(context).size.height / 2.2,
         height: 45,
-        margin: EdgeInsets.only(top: widget.margin),
         padding: EdgeInsets.only(top: 5, left: 10),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -35,17 +24,15 @@ class _CampoInicialState extends State<CampoInicial> {
             ]),
         child: Theme(
           child: TextField(
-            keyboardType: widget.tipoTeclado,
-            obscureText: widget.textoSecreto,
-            controller: widget.controller,
             style: TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
             decoration: InputDecoration(
-                hintText: widget.texto,
+                hintText: 'O que você precisa?',
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 2),
-                  child: Icon(widget.icone),
+                  child: Icon(Icons.search),
                 ),
                 border: InputBorder.none),
+            onChanged: widget.pesquisar,
           ),
           data: Theme.of(context).copyWith(primaryColor: Color(0xFFf5851f)),
         ));
