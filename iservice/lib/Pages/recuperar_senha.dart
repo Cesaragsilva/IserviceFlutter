@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:todo/Widget/botao_inicial.dart';
 import 'package:todo/Widget/campo_inicial.dart';
 import 'package:todo/Widget/inicio_tela.dart';
-import 'package:todo/widget/campo_inicial_linha.dart';
 
 import 'login.dart';
 

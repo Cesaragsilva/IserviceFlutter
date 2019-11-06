@@ -39,22 +39,12 @@ class _InicioTelaCategoriaSubCategoriaState
             padding: const EdgeInsets.only(top: 35.0, left: 15),
             child: Row(
               children: <Widget>[
-                InkWell(
-                  child: Icon(
-                    Icons.menu,
-                    size: 25,
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    widget.scaffold.currentState.openDrawer();
-                  },
-                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 70),
                   child: Text(
                     widget.titulo,
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 25,
                       color: Colors.white,
                     ),
                   ),

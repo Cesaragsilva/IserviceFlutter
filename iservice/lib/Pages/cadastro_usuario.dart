@@ -5,17 +5,18 @@ import 'package:todo/widget/campo_inicial.dart';
 import 'package:todo/widget/inicio_tela.dart';
 
 class CadastroUsuario extends StatefulWidget {
-  @override
-  _CadastroUsuarioState createState() => _CadastroUsuarioState();
-}
-
-class _CadastroUsuarioState extends State<CadastroUsuario> {
   final _ctrlNomeUsuario = TextEditingController();
   final _ctrlSobrenome = TextEditingController();
   final _ctrlApelido = TextEditingController();
   final _ctrlEmail = TextEditingController();
   final _ctrlSenha = TextEditingController();
   final _ctrlConfirmacaoSenha = TextEditingController();
+
+  @override
+  _CadastroUsuarioState createState() => _CadastroUsuarioState();
+}
+
+class _CadastroUsuarioState extends State<CadastroUsuario> {
   var marginTop = 15.0;
 
   @override
@@ -33,38 +34,39 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
             CampoInicial(
               "Nome",
               Icons.perm_identity,
-              _ctrlNomeUsuario,
+              widget._ctrlNomeUsuario,
               margin: marginTop,
             ),
             CampoInicial(
               "Sobrenome",
               Icons.perm_identity,
-              _ctrlSobrenome,
+              widget._ctrlSobrenome,
               margin: marginTop,
             ),
             CampoInicial(
               "Como deseja ser chamado?",
               Icons.insert_emoticon,
-              _ctrlApelido,
+              widget._ctrlApelido,
               margin: marginTop,
             ),
             CampoInicial(
               "Email",
               Icons.email,
-              _ctrlEmail,
+              widget._ctrlEmail,
               margin: marginTop,
+              tipoTeclado: TextInputType.emailAddress,
             ),
             CampoInicial(
               "Senha",
               Icons.vpn_key,
-              _ctrlSenha,
+              widget._ctrlSenha,
               margin: marginTop,
               textoSecreto: true,
             ),
             CampoInicial(
               "Confirmar senha",
               Icons.vpn_key,
-              _ctrlConfirmacaoSenha,
+              widget._ctrlConfirmacaoSenha,
               margin: marginTop,
               textoSecreto: true,
             ),

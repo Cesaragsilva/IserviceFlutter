@@ -7,7 +7,7 @@ import 'package:todo/entidades/usuario.dart';
 import 'package:todo/services/api.dart';
 import 'package:todo/widget/card_categoria_subcategoria.dart';
 import 'package:todo/widget/inicio_tela_categoria_subcategoria.dart';
-import 'package:todo/widget/menu.dart';
+import 'package:todo/widget/scaffold_customizado.dart';
 
 class CardViewSubCategoria extends StatefulWidget {
   final Categoria categoria;
@@ -52,45 +52,39 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
 
   @override
   Widget build(BuildContext context) {
-    var _scaffoldKey = new GlobalKey<ScaffoldState>();
-
-    return Scaffold(
-        key: _scaffoldKey,
-        drawer: Menu(),
-        body: Column(
-          children: <Widget>[
-            inicioTelaSubCategoria(_scaffoldKey),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(20.0),
-                child: GridView.builder(
-                  itemCount: subCategoriasFiltradas.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemBuilder: (context, index) {
-                    return listaSubCategoria(subCategoriasFiltradas[index]);
-                  },
-                ),
-              ),
-            ),
-          ],
-        ));
+    return ScaffoldCustomizado(buildCorpo());
   }
 
-  inicioTelaSubCategoria(GlobalKey<ScaffoldState> _scaffoldKey) {
-    return InicioTelaCategoriaSubCategoria(
-      "SubCategorias",
-      (string) {
-        setState(() {
-          subCategoriasFiltradas = subCategorias
-              .where((p) => p.nome
-                  .toUpperCase()
-                  .contains(string.toString().toUpperCase()))
-              .toList();
-        });
-      },
-      scaffold: _scaffoldKey,
+  buildCorpo() {
+    return Column(
+      children: <Widget>[
+        inicioTelaSubCategoria(),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            child: GridView.builder(
+              itemCount: subCategoriasFiltradas.length,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return listaSubCategoria(subCategoriasFiltradas[index]);
+              },
+            ),
+          ),
+        ),
+      ],
     );
+  }
+
+  inicioTelaSubCategoria() {
+    return InicioTelaCategoriaSubCategoria("SubCategorias", (string) {
+      setState(() {
+        subCategoriasFiltradas = subCategorias
+            .where((p) =>
+                p.nome.toUpperCase().contains(string.toString().toUpperCase()))
+            .toList();
+      });
+    });
   }
 
   listaSubCategoria(SubCategoria subCategoria) {

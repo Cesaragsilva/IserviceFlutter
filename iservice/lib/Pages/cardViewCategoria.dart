@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:todo/Entidades/categoria.dart';
 import 'package:todo/entidades/usuario.dart';
 import 'package:todo/services/api.dart';
-import 'package:todo/widget/campo_pesquisa.dart';
 import 'package:todo/widget/card_categoria_subcategoria.dart';
 import 'package:todo/widget/inicio_tela_categoria_subcategoria.dart';
-import 'package:todo/widget/menu.dart';
+import 'package:todo/widget/scaffold_customizado.dart';
 import 'cardViewSubCategoria.dart';
 
 class CardCategoria extends StatefulWidget {
@@ -46,44 +45,37 @@ class _CardCategoriaState extends State<CardCategoria> {
 
   @override
   Widget build(BuildContext context) {
-    var _scaffoldKey = new GlobalKey<ScaffoldState>();
+    return ScaffoldCustomizado(buildCorpo());
+  }
 
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: Menu(),
-      body: Column(
-        children: <Widget>[
-          inicioTelaCategoria(_scaffoldKey),
-          Expanded(
-            child: Container(
-                padding: EdgeInsets.only(right: 20.0, left: 20.0),
-                child: GridView.builder(
-                    itemCount: categoriasLitradas.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return buildCard(categoriasLitradas[index]);
-                    })),
-          ),
-        ],
-      ),
+  buildCorpo() {
+    return Column(
+      children: <Widget>[
+        inicioTelaCategoria(),
+        Expanded(
+          child: Container(
+              padding: EdgeInsets.only(right: 20.0, left: 20.0),
+              child: GridView.builder(
+                  itemCount: categoriasLitradas.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    return buildCard(categoriasLitradas[index]);
+                  })),
+        ),
+      ],
     );
   }
 
-  inicioTelaCategoria(GlobalKey<ScaffoldState> _scaffoldKey) {
-    return InicioTelaCategoriaSubCategoria(
-      "Categorias",
-      (string) {
-        setState(() {
-          categoriasLitradas = categorias
-              .where((p) => p.nome
-                  .toUpperCase()
-                  .contains(string.toString().toUpperCase()))
-              .toList();
-        });
-      },
-      scaffold: _scaffoldKey,
-    );
+  inicioTelaCategoria() {
+    return InicioTelaCategoriaSubCategoria("Categorias", (string) {
+      setState(() {
+        categoriasLitradas = categorias
+            .where((p) =>
+                p.nome.toUpperCase().contains(string.toString().toUpperCase()))
+            .toList();
+      });
+    });
   }
 
   buildCard(Categoria categoria) {
