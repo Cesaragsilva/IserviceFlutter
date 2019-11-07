@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/utilidades/styles.dart';
 import 'package:todo/widget/campo_pesquisa.dart';
 
 class InicioTelaCategoriaSubCategoria extends StatefulWidget {
@@ -20,19 +21,7 @@ class _InicioTelaCategoriaSubCategoriaState
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width / 2.5,
-      decoration: BoxDecoration(
-        color: Color(0xFFf45d27),
-        boxShadow: [
-          BoxShadow(color: Colors.black26, blurRadius: 8),
-        ],
-        // borderRadius: BorderRadius.only(
-        //     bottomLeft: Radius.circular(100),
-        //     bottomRight: Radius.circular(100)),
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFFf45d27), Color(0xFFf5851f)]),
-      ),
+      decoration: boxDecorationLaranjaDegrade,
       child: Column(
         children: <Widget>[
           Padding(

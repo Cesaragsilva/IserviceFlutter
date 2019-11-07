@@ -11,6 +11,9 @@ class CadastroUsuario extends StatefulWidget {
   final _ctrlEmail = TextEditingController();
   final _ctrlSenha = TextEditingController();
   final _ctrlConfirmacaoSenha = TextEditingController();
+  bool telaCadastro;
+
+  CadastroUsuario({this.telaCadastro = true});
 
   @override
   _CadastroUsuarioState createState() => _CadastroUsuarioState();
@@ -70,7 +73,12 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
               margin: marginTop,
               textoSecreto: true,
             ),
-            BotaoInicial(() {}, "Cadastrar", marginTop)
+            Visibility(
+                visible: widget.telaCadastro,
+                child: BotaoInicial(() {}, "Cadastrar", marginTop)),
+            Visibility(
+                visible: !widget.telaCadastro,
+                child: BotaoInicial(() {}, "Salver", marginTop))
           ],
         ),
       ),

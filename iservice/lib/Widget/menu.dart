@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo/pages/cadastro_servico.dart';
 import 'package:todo/pages/cadastro_usuario.dart';
+import 'package:todo/utilidades/styles.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -13,8 +15,15 @@ class Menu extends StatelessWidget {
               buildUserAccountsDrawerHeader(),
               buildItensMenu("Dados Usuário", false, Icons.account_circle, () {
                 Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CadastroUsuario(
+                          telaCadastro: false,
+                        )));
+              }),
+              buildItensMenu("Meu Serviços", false, Icons.store, () {
+                Navigator.of(context).pop();
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => CadastroUsuario()));
+                    MaterialPageRoute(builder: (context) => CadastroServico()));
               }),
             ],
           ),
@@ -58,15 +67,7 @@ class Menu extends StatelessWidget {
           color: Colors.grey,
         ),
       ),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: Colors.black26, blurRadius: 8),
-        ],
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFFf45d27), Color(0xFFf5851f)]),
-      ),
+      decoration: boxDecorationLaranjaDegrade,
     );
   }
 }
