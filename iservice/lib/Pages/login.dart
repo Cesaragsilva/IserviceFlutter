@@ -6,6 +6,7 @@ import 'package:todo/entidades/usuario.dart';
 import 'package:todo/pages/cadastro_usuario.dart';
 import 'package:todo/services/api.dart';
 import 'package:todo/widget/campo_inicial.dart';
+import 'package:todo/widget/texto_final_tela_link.dart';
 
 import 'cardViewCategoria.dart';
 
@@ -39,10 +40,6 @@ class _LoginState extends State<Login> {
   }
 
   Container corpoTela(BuildContext context) {
-    var buttonLogin = BotaoInicial(() {
-      _clickButton(context);
-    }, "Entrar", 30);
-
     return Container(
       padding: EdgeInsets.only(top: 40),
       child: Form(
@@ -53,7 +50,9 @@ class _LoginState extends State<Login> {
             CampoInicial('Senha', Icons.vpn_key, _ctrlSenha,
                 margin: 40, textoSecreto: true),
             recuperarSenha(),
-            buttonLogin,
+            BotaoInicial(() {
+              _clickButton(context);
+            }, "Entrar", 30),
             acessarCom(),
             botaoRedesocialLinha(),
             cadastreSe()
@@ -170,38 +169,12 @@ class _LoginState extends State<Login> {
   }
 
   Widget cadastreSe() {
-    return GestureDetector(
-      onTap: () {
+    return Padding(
+      padding: const EdgeInsets.only(top: 50),
+      child: TextoFinalTelaLink(() {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => CadastroUsuario()));
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: 50),
-        child: Align(
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Não possui uma conta? ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                TextSpan(
-                  text: 'Registre-se',
-                  style: TextStyle(
-                    color: Color(0xFFf5851f),
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      }, 'Não possui uma conta? ', 'Registre-se'),
     );
   }
 }

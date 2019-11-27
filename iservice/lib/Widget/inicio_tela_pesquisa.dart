@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:todo/utilidades/styles.dart';
 import 'package:todo/widget/campo_pesquisa.dart';
 
-class InicioTelaCategoriaSubCategoria extends StatefulWidget {
+class InicioTelaPesquisa extends StatefulWidget {
   Function comportamento;
   String titulo;
   GlobalKey<ScaffoldState> scaffold = new GlobalKey<ScaffoldState>();
 
-  InicioTelaCategoriaSubCategoria(this.titulo, this.comportamento,
-      {this.scaffold = null});
+  InicioTelaPesquisa(this.titulo, this.comportamento, {this.scaffold = null});
   @override
-  _InicioTelaCategoriaSubCategoriaState createState() =>
-      _InicioTelaCategoriaSubCategoriaState();
+  _InicioTelaPesquisa createState() => _InicioTelaPesquisa();
 }
 
-class _InicioTelaCategoriaSubCategoriaState
-    extends State<InicioTelaCategoriaSubCategoria> {
+class _InicioTelaPesquisa extends State<InicioTelaPesquisa> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +22,10 @@ class _InicioTelaCategoriaSubCategoriaState
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 35.0, left: 15),
+            padding: const EdgeInsets.only(
+              top: 35.0,
+              left: 15,
+            ),
             child: Row(
               children: <Widget>[
                 Padding(

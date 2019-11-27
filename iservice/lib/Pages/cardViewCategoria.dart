@@ -5,7 +5,7 @@ import 'package:todo/Entidades/categoria.dart';
 import 'package:todo/entidades/usuario.dart';
 import 'package:todo/services/api.dart';
 import 'package:todo/widget/card_categoria_subcategoria.dart';
-import 'package:todo/widget/inicio_tela_categoria_subcategoria.dart';
+import 'package:todo/widget/inicio_tela_pesquisa.dart';
 import 'package:todo/widget/scaffold_customizado.dart';
 import 'cardViewSubCategoria.dart';
 
@@ -68,7 +68,7 @@ class _CardCategoriaState extends State<CardCategoria> {
   }
 
   inicioTelaCategoria() {
-    return InicioTelaCategoriaSubCategoria("Categorias", (string) {
+    return InicioTelaPesquisa("Categorias", (string) {
       setState(() {
         categoriasLitradas = categorias
             .where((p) =>

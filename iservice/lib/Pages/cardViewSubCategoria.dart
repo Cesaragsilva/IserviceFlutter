@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:todo/Entidades/categoria.dart';
 import 'package:todo/Entidades/subCategoria.dart';
 import 'package:todo/entidades/usuario.dart';
+import 'package:todo/pages/lista_servico.dart';
 import 'package:todo/services/api.dart';
 import 'package:todo/widget/card_categoria_subcategoria.dart';
-import 'package:todo/widget/inicio_tela_categoria_subcategoria.dart';
+import 'package:todo/widget/inicio_tela_pesquisa.dart';
 import 'package:todo/widget/scaffold_customizado.dart';
 
 class CardViewSubCategoria extends StatefulWidget {
@@ -61,7 +62,7 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
         inicioTelaSubCategoria(),
         Expanded(
           child: Container(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.only(right: 20.0, left: 20.0),
             child: GridView.builder(
               itemCount: subCategoriasFiltradas.length,
               gridDelegate:
@@ -77,7 +78,7 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
   }
 
   inicioTelaSubCategoria() {
-    return InicioTelaCategoriaSubCategoria("SubCategorias", (string) {
+    return InicioTelaPesquisa("SubCategorias", (string) {
       setState(() {
         subCategoriasFiltradas = subCategorias
             .where((p) =>
@@ -88,6 +89,11 @@ class _CardViewSubCategoria extends State<CardViewSubCategoria> {
   }
 
   listaSubCategoria(SubCategoria subCategoria) {
-    return CarCategoriaSubCategoria(subCategoria.nome, () {});
+    return CarCategoriaSubCategoria(subCategoria.nome, () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ListaServico(subCategoria.id)));
+    });
   }
 }

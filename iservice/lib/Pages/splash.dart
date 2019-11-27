@@ -18,7 +18,7 @@ class SplashPageState extends State<SplashPage> {
   }
 
   void navigationToNextPage() {
-    Navigator.pushReplacementNamed(context, '/login');
+    Navigator.pushReplacementNamed(context, '/PaginaInicial');
   }
 
   var _height = 0.0;

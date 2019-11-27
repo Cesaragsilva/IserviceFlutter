@@ -24,6 +24,17 @@ class API {
         headers: {"Accept": "application/json"});
   }
 
+  static Future getResumoServicos(String id) async {
+    var url = baseUrl + "Servico/v1/SubCategoria/" + id;
+
+    var teste = await http.get(
+        //url
+        Uri.encodeFull(url),
+        headers: {"Accept": "application/json"});
+
+    return teste;
+  }
+
   static Future<LoginUsuario> postLogin(String email, String senha) async {
     Map login = {"login": email, "senha": senha};
 

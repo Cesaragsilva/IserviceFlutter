@@ -4,15 +4,17 @@ class BotaoInicial extends StatelessWidget {
   Function comportamento;
   String texto;
   double marginTop;
+  double largura;
 
-  BotaoInicial(this.comportamento, this.texto, this.marginTop);
+  BotaoInicial(this.comportamento, this.texto, this.marginTop,
+      {this.largura = 200});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(top: marginTop, bottom: 20),
         child: ButtonTheme(
-          minWidth: 200,
+          minWidth: largura,
           splashColor: Color(0xFFf5851f),
           padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 15.0),
           child: RaisedButton(
